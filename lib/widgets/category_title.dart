@@ -1,16 +1,22 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:news_app/screen/category_news.dart';
 
 class CategoryTile extends StatelessWidget {
   final imageUrl, categoryName;
+  final int index;
 
-  CategoryTile({this.categoryName, this.imageUrl});
+  CategoryTile({this.categoryName, this.imageUrl,this.index});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){},
+
+        onTap: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>CategoryNewsScreen(index: index,)));
+        },
+
       child: Container(
        // color: Colors.green.shade100,
         margin: EdgeInsets.only(right: 10),

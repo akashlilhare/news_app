@@ -16,7 +16,43 @@ class News {
 
     var jsonData = jsonDecode(response.body);
 
-    print(jsonData);
+    if(jsonData['status'] == "ok"){
+      jsonData["articles"].forEach((element){
+
+        if(element['urlToImage'] != null && element['description'] != null){
+          Article article = Article(
+            source: element['source']['name'],
+            title: element['title'],
+            author: element['author'] == null ? "null":element['author'],
+            description: element['description'],
+            urlToImage: element['urlToImage'],
+            publshedAt: element['publishedAt'],
+            content: element["content"],
+            articleUrl: element["url"],
+          );
+          news.add(article);
+        }
+
+      });
+    }
+  }
+}
+
+class CategoryNews {
+
+  KeyHelper keyHelper = KeyHelper();
+  List<Article> news  = [];
+
+  Future<void> getNews(String category) async{
+    print(category);
+String url = "https://newsapi.org/v2/top-headlines?country=in&${keyHelper.apiId}";
+  //  String url = "http://newsapi.org/v2/top-headlines?country=in&category=$category&apiKey=${keyHelper.apiId}";
+
+    var response = await http.get(url);
+
+    var jsonData = jsonDecode(response.body);
+
+print(response.statusCode);
     if(jsonData['status'] == "ok"){
       jsonData["articles"].forEach((element){
 
