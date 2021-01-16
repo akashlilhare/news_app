@@ -30,6 +30,8 @@
 .pub-cache/
 .pub/
 /build/
+
+# private data
 lib/helper/key_helper.dart
 
 # Web related

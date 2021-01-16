@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/helper/data.dart';
+import 'package:news_app/helper/key_helper.dart';
 import 'package:news_app/helper/news_artical.dart';
 import 'package:news_app/models/artical_model.dart';
 import 'package:news_app/models/categori_model.dart';
@@ -8,29 +9,39 @@ import 'package:news_app/widgets/blog_tile.dart';
 import 'package:news_app/widgets/category_title.dart';
 
 class CategoryNewsScreen extends StatefulWidget {
-  final int index;
-  CategoryNewsScreen({@required this.index});
+  final String category;
+  CategoryNewsScreen({@required this.category});
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<CategoryNewsScreen> {
-  List<String> categoriesName =["business","entertainment", "general", "health", "science", "sports" "technology"];
   List<CategoryModel> categories = [];
   List<Article> articles = [];
-  CategoryNews newsClass = CategoryNews();
+ News newsClass = News();
+ KeyHelper keyHelper = KeyHelper();
   bool _loading = true;
   bool liked = false;
 
   @override
   void initState() {
+   // print(categories[widget.index]);
+
     super.initState();
     categories = getCategories();
     getCategoryNews();
   }
 
   getCategoryNews() async {
-    await newsClass.getNews(categoriesName[widget.index]);
+    String url = "http://newsapi.org/v2/top-headlines?country=in&category=${widget.category}&apiKey=${keyHelper.apiId}";
+   // String url = "http://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=publishedAt&language=en&apiKey=${keyHelper.apiId}";
+
+
+    print(url);
+   // await newsClass.getNews();
+   await newsClass.getNews(url);
+    print("in async block");
+
     articles = newsClass.news;
     setState(() {
       _loading = false;
@@ -61,19 +72,7 @@ class _HomeState extends State<CategoryNewsScreen> {
           margin: EdgeInsets.symmetric(horizontal: 8),
           child: Column(
             children: [
-              Container(
-                  height: 70,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemCount: categories.length,
-                    itemBuilder: (context, index) {
-                      return CategoryTile(
-                        categoryName: categories[index].categoryName,
-                        imageUrl: categories[index].imageAssetUrl,
-                      );
-                    },
-                  )),
+
               Expanded(
                 //     height: 600,
                 child: ListView.builder(

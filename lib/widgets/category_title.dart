@@ -5,56 +5,41 @@ import 'package:news_app/screen/category_news.dart';
 
 class CategoryTile extends StatelessWidget {
   final imageUrl, categoryName;
-  final int index;
 
-  CategoryTile({this.categoryName, this.imageUrl,this.index});
+
+  CategoryTile({this.categoryName, this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-
-        onTap: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>CategoryNewsScreen(index: index,)));
-        },
-
-      child: Container(
-       // color: Colors.green.shade100,
-        margin: EdgeInsets.only(right: 10),
-          child: Stack(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-           child: CachedNetworkImage(
-             width: 120,
-              height: 60,
-              imageUrl: imageUrl,
-              fit: BoxFit.cover,
-              placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-             // errorWidget: (context, url, error) => Icon(Icons.error),
-            ),
-            // child:CachedNetworkImage(
-            //   imageUrl:
-            //     imageUrl(
-            //       imageUrl:imageUrl,
-            //     width: 120,
-            //     height: 60,
-            //     fit: BoxFit.cover,
-            //   ),
-            // )
-
-          ),
-          Container(
-            width: 120,
+    return Container(
+     // color: Colors.green.shade100,
+      margin: EdgeInsets.only(right: 10),
+        child: Stack(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+         child: CachedNetworkImage(
+           width: 120,
             height: 60,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: Colors.black26
-
-            ),
+            imageUrl: imageUrl,
+            fit: BoxFit.cover,
+            placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+           // errorWidget: (context, url, error) => Icon(Icons.error),
           ),
-          Text(categoryName,style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),),
-        ],
-      )),
-    );
+
+
+        ),
+        Container(
+          width: 120,
+          height: 60,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: Colors.black26
+
+          ),
+        ),
+        Text(categoryName,style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),),
+      ],
+    ));
   }
 }

@@ -35,16 +35,17 @@ List<CategoryModel> getCategories(){
     categorieModel.imageAssetUrl = "https://images.unsplash.com/photo-1554475901-4538ddfbccc2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1504&q=80";
     myCategories.add(categorieModel);
 
-    //5
+    //6
     categorieModel = new CategoryModel();
     categorieModel.categoryName = "Sports";
     categorieModel.imageAssetUrl = "https://images.unsplash.com/photo-1495563923587-bdc4282494d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80";
     myCategories.add(categorieModel);
 
-    //5
+    //7
     categorieModel = new CategoryModel();
     categorieModel.categoryName = "Technology";
     categorieModel.imageAssetUrl = "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80";
     myCategories.add(categorieModel);
+
     return myCategories;
 }

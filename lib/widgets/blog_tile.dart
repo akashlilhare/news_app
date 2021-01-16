@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/screen/webwiew_artical.dart';
+import 'package:share/share.dart';
 
 class BlogTile extends StatefulWidget {
   final String imageUrl, title, desc, publishedAt,author,articleUrl,source;
@@ -28,7 +30,7 @@ class _BlogTileState extends State<BlogTile> {
     String time =(duration.inHours >=1) ? duration.inHours.toString()+" hour ago":duration.inMinutes.toString()+" minuit ago";
     return GestureDetector(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>ArticleView(blogUrl: widget.articleUrl)));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>WebViewContainer(url:  widget.articleUrl)));
       },
       child: Container(
 
@@ -36,7 +38,7 @@ class _BlogTileState extends State<BlogTile> {
 
             borderRadius: BorderRadius.circular(12)
         ),
-        padding: const EdgeInsets.only(top: 20, bottom: 10),
+        padding: const EdgeInsets.only(top: 10, bottom: 10,left: 10,right: 10),
         child: Card( shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
@@ -48,14 +50,15 @@ class _BlogTileState extends State<BlogTile> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                    child: Image.network(
-                      widget.imageUrl,
-                      fit: BoxFit.cover,
-                    ),
-                    //   height: 450,
+                  CachedNetworkImage(
                     width: double.infinity,
+                    height: 200,
+                    imageUrl: widget.imageUrl,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                    // errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
+
                   Container(
                       padding: EdgeInsets.all(8),
                       color: Colors.black54,
@@ -109,7 +112,9 @@ Container(color: Colors.black,height: .5,),
                                   print(liked);
                                 });
                               }),
-                          IconButton(icon: Icon(Icons.share),onPressed: (){},color: Colors.white,tooltip: "Share",splashColor: Colors.blue,)
+                          IconButton(icon: Icon(Icons.share),onPressed: (){
+                            Share.share(widget.articleUrl);
+                          },color: Colors.white,tooltip: "Share",splashColor: Colors.blue,)
                         ],
                       ),
                     ),
