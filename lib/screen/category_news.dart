@@ -6,7 +6,6 @@ import 'package:news_app/helper/news_artical.dart';
 import 'package:news_app/models/artical_model.dart';
 import 'package:news_app/models/categori_model.dart';
 import 'package:news_app/widgets/blog_tile.dart';
-import 'package:news_app/widgets/category_title.dart';
 
 class CategoryNewsScreen extends StatefulWidget {
   final String category;
@@ -18,14 +17,14 @@ class CategoryNewsScreen extends StatefulWidget {
 class _HomeState extends State<CategoryNewsScreen> {
   List<CategoryModel> categories = [];
   List<Article> articles = [];
- News newsClass = News();
- KeyHelper keyHelper = KeyHelper();
+  News newsClass = News();
+  KeyHelper keyHelper = KeyHelper();
   bool _loading = true;
   bool liked = false;
 
   @override
   void initState() {
-   // print(categories[widget.index]);
+    // print(categories[widget.index]);
 
     super.initState();
     categories = getCategories();
@@ -33,13 +32,13 @@ class _HomeState extends State<CategoryNewsScreen> {
   }
 
   getCategoryNews() async {
-    String url = "http://newsapi.org/v2/top-headlines?country=in&category=${widget.category}&apiKey=${keyHelper.apiId}";
-   // String url = "http://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=publishedAt&language=en&apiKey=${keyHelper.apiId}";
+    String url = "https://newsapi.org/v2/top-headlines?country=in&category=${widget.category}&apiKey=${keyHelper.apiId}";
+    // String url = "http://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=publishedAt&language=en&apiKey=${keyHelper.apiId}";
 
 
     print(url);
-   // await newsClass.getNews();
-   await newsClass.getNews(url);
+    // await newsClass.getNews();
+    await newsClass.getNews(url);
     print("in async block");
 
     articles = newsClass.news;
@@ -96,4 +95,3 @@ class _HomeState extends State<CategoryNewsScreen> {
     );
   }
 }
-

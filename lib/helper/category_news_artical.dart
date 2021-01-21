@@ -16,7 +16,6 @@ class CategoryNews {
     print(category);
 
 
-//String url = "https://newsapi.org/v2/top-headlines?country=in&${keyHelper.apiId}";
     String url = "http://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=publishedAt&language=en&apiKey=${keyHelper.apiId}";
 
     var response = await http.get(url);

@@ -13,7 +13,7 @@ class News {
     var response = await http.get(url);
 
     var jsonData = jsonDecode(response.body);
-
+print(jsonData);
     if(jsonData['status'] == "ok"){
       jsonData["articles"].forEach((element){
 

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:news_app/screen/webwiew_artical.dart';
 import 'package:share/share.dart';
 
-class BlogTile extends StatefulWidget {
+class LandScapeBlogTile extends StatefulWidget {
   final String imageUrl, title, desc, publishedAt,author,articleUrl,source;
 
-  BlogTile({
+  LandScapeBlogTile({
     @required this.imageUrl,
     @required this.title,
     @required this.desc,
@@ -15,18 +15,19 @@ class BlogTile extends StatefulWidget {
     @required this.articleUrl,
     @required this.source
   });
-
   @override
-  _BlogTileState createState() => _BlogTileState();
+  _LandScapeBlogTileState createState() => _LandScapeBlogTileState();
 }
 
-class _BlogTileState extends State<BlogTile> {
+class _LandScapeBlogTileState extends State<LandScapeBlogTile> {
   bool liked = false;
-
 
   @override
   Widget build(BuildContext context) {
 
+    var size = MediaQuery.of(context).size;
+    double height = size.height;
+    double width = size.width;
     var duration =  DateTime.now().difference(DateTime.parse(widget.publishedAt));
     String time =(duration.inHours >=1) ? duration.inHours.toString()+" hour ago":duration.inMinutes.toString()+" minuit ago";
     return GestureDetector(
@@ -34,7 +35,9 @@ class _BlogTileState extends State<BlogTile> {
         Navigator.push(context, MaterialPageRoute(builder: (context)=>WebViewContainer(url:  widget.articleUrl)));
       },
       child: Container(
+        height: height*.4,
 
+        width: double.infinity,
         decoration: BoxDecoration(
 
             borderRadius: BorderRadius.circular(12)
@@ -49,41 +52,57 @@ class _BlogTileState extends State<BlogTile> {
             child: Container(
               color: Colors.blue,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CachedNetworkImage(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      CachedNetworkImage(
+                        width: width *.4,
+                        height: height*.397,
+                        imageUrl: widget.imageUrl,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                        // errorWidget: (context, url, error) => Icon(Icons.error),
+                      ),
+
+                      Column(
+                        children: [
+                          Container(
+                            width: width*.557,
+                              height: height*.197,
+                              padding: EdgeInsets.all(8),
+                              color: Colors.black54,
+                              child: Text(
+                                widget.title,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white),
+                              )),
+                          Container(
+                            width: width*.557,
+                            height: height*.2,
+                            padding: EdgeInsets.all(8),
+                            color: Colors.black54,
+                            child: Flexible(
+                              child: Text(
+                                widget.desc,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400, color: Colors.white),
+                             maxLines: 3, ),
+                            ),
+                          ),
+                        ],
+                      )
+
+
+
+                    ],
+                  ),
+                  Container(
+                    height: height*.15,
                     width: double.infinity,
-                    height: 200,
-                    imageUrl: widget.imageUrl,
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-                    // errorWidget: (context, url, error) => Icon(Icons.error),
-                  ),
-
-                  Container(
-                      padding: EdgeInsets.all(8),
-                      color: Colors.black54,
-                      child: Text(
-                        widget.title,
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white),
-                      )),
-                  Container(
-                    padding: EdgeInsets.all(8),
-                    color: Colors.black54,
-                    child: Text(
-                      widget.desc,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w400, color: Colors.white),
-                    ),
-                  ),
-
-                  Container(color: Colors.black54,height: 10,),
-
-                  Container(color: Colors.black,height: .5,),
-                  Container(
                     color: Colors.black54,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -92,7 +111,7 @@ class _BlogTileState extends State<BlogTile> {
                         children: [
 
                           Container(
-                            width:widget.source =="null" ?0:80,
+                            width:widget.source =="null" ?0:150,
                             child: Text(
                               widget.source =="null"?"":widget.source,
                               style: TextStyle(color: Colors.white),
