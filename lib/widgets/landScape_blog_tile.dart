@@ -57,13 +57,15 @@ class _LandScapeBlogTileState extends State<LandScapeBlogTile> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      CachedNetworkImage(
-                        width: width *.4,
-                        height: height*.397,
-                        imageUrl: widget.imageUrl,
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-                        // errorWidget: (context, url, error) => Icon(Icons.error),
+                      Expanded(
+                        child: CachedNetworkImage(
+                          width: width *.4,
+                          height: height*.397,
+                          imageUrl: widget.imageUrl,
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                          // errorWidget: (context, url, error) => Icon(Icons.error),
+                        ),
                       ),
 
                       Column(

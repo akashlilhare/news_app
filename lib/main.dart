@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'News Now',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primaryColor: Colors.white, primarySwatch: Colors.green),
+     // theme: ThemeData(primaryColor: Colors.white, primarySwatch: Colors.green),
       home: SplashScreen(),
     );
   }
