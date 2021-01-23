@@ -33,6 +33,7 @@
 
 # private data
 lib/helper/key_helper.dart
+**/key.properties
 
 # Web related
 lib/generated_plugin_registrant.dart
