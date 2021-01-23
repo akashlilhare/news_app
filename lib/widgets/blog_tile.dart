@@ -25,6 +25,7 @@ class _BlogTileState extends State<BlogTile> {
 
 
   @override
+
   Widget build(BuildContext context) {
 
     var duration =  DateTime.now().difference(DateTime.parse(widget.publishedAt));
@@ -36,18 +37,18 @@ class _BlogTileState extends State<BlogTile> {
       child: Container(
 
         decoration: BoxDecoration(
-
             borderRadius: BorderRadius.circular(12)
         ),
         padding: const EdgeInsets.only(top: 10, bottom: 10,left: 10,right: 10),
         child: Card( shape: RoundedRectangleBorder(
+
           borderRadius: BorderRadius.circular(20.0),
         ),
           elevation: 5,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Container(
-              color: Colors.blue,
+              color: Colors.blue.shade900,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -62,7 +63,7 @@ class _BlogTileState extends State<BlogTile> {
 
                   Container(
                       padding: EdgeInsets.all(8),
-                      color: Colors.black54,
+
                       child: Text(
                         widget.title,
                         style: TextStyle(
@@ -72,19 +73,18 @@ class _BlogTileState extends State<BlogTile> {
                       )),
                   Container(
                     padding: EdgeInsets.all(8),
-                    color: Colors.black54,
+
                     child: Text(
                       widget.desc,
                       style: TextStyle(
                           fontWeight: FontWeight.w400, color: Colors.white),
                     ),
                   ),
+Container(height: 5,),
 
-                  Container(color: Colors.black54,height: 10,),
 
-                  Container(color: Colors.black,height: .5,),
+                  Container(height: 1,color: Colors.black,),
                   Container(
-                    color: Colors.black54,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(

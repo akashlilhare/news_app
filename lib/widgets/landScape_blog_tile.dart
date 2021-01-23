@@ -50,7 +50,7 @@ class _LandScapeBlogTileState extends State<LandScapeBlogTile> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Container(
-              color: Colors.blue,
+              color: Colors.blue[900],
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -60,52 +60,56 @@ class _LandScapeBlogTileState extends State<LandScapeBlogTile> {
                       Expanded(
                         child: CachedNetworkImage(
                           width: width *.4,
-                          height: height*.397,
+                          height: height*.4,
                           imageUrl: widget.imageUrl,
                           fit: BoxFit.cover,
                           placeholder: (context, url) => Center(child: CircularProgressIndicator()),
                           // errorWidget: (context, url, error) => Icon(Icons.error),
                         ),
                       ),
-
-                      Column(
+                      Container(height:height*.4,width: 2,color: Colors.black,),
+                      Container(height: height*.4,width: width*.557,
+                      child:Column(
                         children: [
+
+                        Container(
+                              width: width*.557,
+                                padding: EdgeInsets.only(right: 8,left: 8,top: 8),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 8,left: 8,bottom: 8),
+                                  child: Flexible(
+                                    child: Text(
+                                      widget.title,semanticsLabel: "...",maxLines: 2,
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                )),
+
                           Container(
-                            width: width*.557,
-                              height: height*.197,
-                              padding: EdgeInsets.all(8),
-                              color: Colors.black54,
-                              child: Text(
-                                widget.title,
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.white),
-                              )),
-                          Container(
-                            width: width*.557,
-                            height: height*.2,
-                            padding: EdgeInsets.all(8),
-                            color: Colors.black54,
-                            child: Flexible(
-                              child: Text(
-                                widget.desc,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w400, color: Colors.white),
-                             maxLines: 3, ),
-                            ),
-                          ),
+                              //    height: height*.2,
+                                  width: width*.557,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      widget.desc,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400, color: Colors.white),
+                                     maxLines: 4, ),
+                                  ),
+                                ),
+
                         ],
-                      )
-
-
-
+                      ),),
                     ],
                   ),
+                  Container(height: 2,color: Colors.black,),
                   Container(
-                    height: height*.15,
-                    width: double.infinity,
-                    color: Colors.black54,
+                    // height: height*.15,
+                    // width: double.infinity,
+
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(

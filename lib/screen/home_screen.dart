@@ -139,8 +139,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 controller: tabContoller,
                 children: [
                   isPortrait
-                      ? ListView.builder(
-                          physics: ClampingScrollPhysics(),
+                      ?
+                  ListView.builder(
                           itemCount: articles.length,
                           itemBuilder: (context, index) {
                             return BlogTile(
