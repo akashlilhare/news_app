@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:news_app/screen/category_news.dart';
 
 class CategoryTile extends StatelessWidget {
   final imageUrl, categoryName;
@@ -12,11 +11,9 @@ class CategoryTile extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     double height = size.height;
-    double width = size.width;
     var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
 
     return Container(
-        // color: Colors.green.shade100,
         margin: EdgeInsets.only(right: isPortrait ? 10 : 20),
         child: Stack(
           children: [
