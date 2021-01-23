@@ -44,6 +44,7 @@ class _LandScapeBlogTileState extends State<LandScapeBlogTile> {
         ),
         padding: const EdgeInsets.only(top: 10, bottom: 10,left: 10,right: 10),
         child: Card( shape: RoundedRectangleBorder(
+          side: BorderSide(color: Colors.black,width: 2),
           borderRadius: BorderRadius.circular(20.0),
         ),
           elevation: 5,
@@ -77,14 +78,12 @@ class _LandScapeBlogTileState extends State<LandScapeBlogTile> {
                                 padding: EdgeInsets.only(right: 8,left: 8,top: 8),
                                 child: Padding(
                                   padding: const EdgeInsets.only(right: 8,left: 8,bottom: 8),
-                                  child: Flexible(
-                                    child: Text(
-                                      widget.title,semanticsLabel: "...",maxLines: 2,
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w700,
-                                          color: Colors.white),
-                                    ),
+                                  child: Text(
+                                    widget.title,maxLines: 2,
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white),
                                   ),
                                 )),
 
@@ -92,7 +91,7 @@ class _LandScapeBlogTileState extends State<LandScapeBlogTile> {
                               //    height: height*.2,
                                   width: width*.557,
                                   child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.only(left:15.0,top: 5,right: 10),
                                     child: Text(
                                       widget.desc,
                                       style: TextStyle(
@@ -106,7 +105,7 @@ class _LandScapeBlogTileState extends State<LandScapeBlogTile> {
                     ],
                   ),
                   Container(height: 2,color: Colors.black,),
-                  Container(
+                  Expanded(
                     // height: height*.15,
                     // width: double.infinity,
 
@@ -120,7 +119,8 @@ class _LandScapeBlogTileState extends State<LandScapeBlogTile> {
                             width:widget.source =="null" ?0:150,
                             child: Text(
                               widget.source =="null"?"":widget.source,
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.white,
+                              ),
                               overflow: TextOverflow.ellipsis,),
                           ),
 

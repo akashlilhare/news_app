@@ -29,9 +29,9 @@ class _WebViewContainerState extends State < WebViewContainer > {
         appBar: AppBar(   title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("News",style: TextStyle(color: Colors.blue.shade900)),
+            Text("In-",style: TextStyle(color: Colors.blue.shade900)),
             Text(
-              "Now",
+              "News",
               style: TextStyle(color: Colors.green),
             ),
           ],
