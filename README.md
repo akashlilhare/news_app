@@ -15,13 +15,8 @@ A new Flutter application.
  <table>
   <tr>
     <td><img src="screenShots/s8/screen_3.png" width="300" height="600"></td>
-    <table>
-      <tc>
-                <td><img src="screenShots/s8/screen_6.png" width="600" height="300"></td>
-        <td><img src="screenShots/s8/screen_7.png" width="600" height="300"></td>
-      </tc>
-
-
+     <td><img src="screenShots/s8/screen_6.png" width="600" height="300"></td>
+    <td><img src="screenShots/s8/screen_7.png" width="600" height="300"></td>
   </tr>
  </table>
 
