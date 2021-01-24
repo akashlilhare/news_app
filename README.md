@@ -8,7 +8,6 @@ A new Flutter application.
   <tr>
     <td><img src="screenShots/ss.gif" width="300" height="600"></td>
     <td><img src="screenShots/s8/screen_1.png" width="300" height="600"></td>
-    <td><img src="screenShots/s8/screen_2.png" width="300" height="600"></td>
     <td><img src="screenShots/s8/screen_3.png" width="300" height="600"></td>
     
   </tr>
