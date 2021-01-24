@@ -9,22 +9,12 @@ A new Flutter application.
     <td><img src="screenShots/ss.gif" width="300" height="600"></td>
     <td><img src="screenShots/s8/screen_1.png" width="300" height="600"></td>
     <td><img src="screenShots/s8/screen_2.png" width="300" height="600"></td>
-  </tr>
- </table>
- 
- <table>
-  <tr>
     <td><img src="screenShots/s8/screen_3.png" width="300" height="600"></td>
-    <table>
-      <tr>
-                 <td><img src="screenShots/s8/screen_6.png" width="600" height="300"></td>
-    <td><img src="screenShots/s8/screen_7.png" width="600" height="300"></td>   
-      </tr>
- 
-    </table>
-
+    
   </tr>
  </table>
+ 
+
 
 
 ## Getting Started
