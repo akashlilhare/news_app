@@ -57,7 +57,7 @@ List<CategoryModel> getDrawerCategories(){
 
   categorieModel = new CategoryModel();
   categorieModel.categoryName = "Home";
-  categorieModel.imageAssetUrl = "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
+  categorieModel.imageAssetUrl = "https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80";
   myCategories.add(categorieModel);
 
   //1

@@ -18,6 +18,7 @@ class CategoryNewsScreen extends StatefulWidget {
 
 class _HomeState extends State<CategoryNewsScreen> {
   List<CategoryModel> categories = [];
+  List<CategoryModel> drawerCategories =[];
   List<Article> articles = [];
   News newsClass = News();
   KeyHelper keyHelper = KeyHelper();
@@ -30,6 +31,7 @@ class _HomeState extends State<CategoryNewsScreen> {
 
     super.initState();
     categories = getCategories();
+    drawerCategories = getDrawerCategories();
     getCategoryNews();
   }
 
@@ -54,19 +56,13 @@ class _HomeState extends State<CategoryNewsScreen> {
     var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
 
     return Scaffold(
-      drawer: DrawerScreen(titleList: categories,),
-      appBar: AppBar(
+      drawer: DrawerScreen(titleList: drawerCategories),
+      appBar: AppBar(centerTitle: true,
         elevation: 0.0,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("News",style: TextStyle(color: Colors.blue.shade700),),
-            Text(
-              "Now",
-              style: TextStyle(color: Colors.green),
-            ),
-          ],
-        ),
+        title:
+            Text(widget.category +" News",style: TextStyle(color: Colors.green.shade700),),
+
+
       ),
       body: _loading
           ? Center(

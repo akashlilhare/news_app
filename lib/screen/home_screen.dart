@@ -71,9 +71,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return Scaffold(
 
       drawer: DrawerScreen(
-
         titleList:drawerCategories,
-
       ),
       backgroundColor: Colors.white,
       body: _loading
@@ -83,7 +81,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         controller: _scrollController,
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
-             SliverAppBar(
+             SliverAppBar( leading: IconButton(
+               icon: Icon(Icons.drag_handle,color: Colors.blue.shade900,),
+               onPressed: () => Scaffold.of(context).openDrawer(),
+             ),
                     title: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
