@@ -10,6 +10,7 @@ import 'package:news_app/widgets/category_title.dart';
 import 'package:news_app/widgets/landScape_blog_tile.dart';
 
 import 'category_news.dart';
+import 'drawer_screen.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -18,6 +19,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   List<CategoryModel> categories = [];
+  List<CategoryModel> drawerCategories = [];
   List<Article> articles = [];
   News newsClass = News();
   KeyHelper keyHelper = KeyHelper();
@@ -36,6 +38,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     );
     super.initState();
     categories = getCategories();
+    drawerCategories = getDrawerCategories();
     getNews();
   }
 
@@ -66,6 +69,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     double height = size.height;
     // double width = size.width;
     return Scaffold(
+
+      drawer: DrawerScreen(
+
+        titleList:drawerCategories,
+
+      ),
       backgroundColor: Colors.white,
       body: _loading
           ? Center(child: CircularProgressIndicator())

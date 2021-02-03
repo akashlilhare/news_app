@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'News Now',
+      title: 'In-News',
       debugShowCheckedModeBanner: false,
      theme: ThemeData(primaryColor: Colors.white, primarySwatch: Colors.green),
       home: Home(),

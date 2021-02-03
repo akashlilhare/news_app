@@ -5,6 +5,7 @@ import 'package:news_app/helper/key_helper.dart';
 import 'package:news_app/helper/news_artical.dart';
 import 'package:news_app/models/artical_model.dart';
 import 'package:news_app/models/categori_model.dart';
+import 'package:news_app/screen/drawer_screen.dart';
 import 'package:news_app/widgets/blog_tile.dart';
 import 'package:news_app/widgets/landScape_blog_tile.dart';
 
@@ -53,6 +54,7 @@ class _HomeState extends State<CategoryNewsScreen> {
     var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
 
     return Scaffold(
+      drawer: DrawerScreen(titleList: categories,),
       appBar: AppBar(
         elevation: 0.0,
         title: Row(
@@ -82,7 +84,6 @@ class _HomeState extends State<CategoryNewsScreen> {
                   publishedAt: articles[index].publshedAt,
                   author: articles[index].author,
                   articleUrl : articles[index].articleUrl,
-
                 );
               }):GridView.builder(
       itemCount: articles.length,
