@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/screen/webwiew_artical.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class PrivecyPolicy extends StatelessWidget {
   @override

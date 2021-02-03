@@ -3,8 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/models/categori_model.dart';
 import 'package:news_app/screen/privecy_police.dart';
-import 'package:news_app/screen/webwiew_artical.dart';
-import 'package:share/share.dart';
 
 import 'category_news.dart';
 import 'home_screen.dart';
@@ -52,7 +50,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
             ),
             Expanded(
               child: ListView.separated(
-                shrinkWrap:true ,
+                  shrinkWrap: true,
                   itemCount: widget.titleList.length,
                   separatorBuilder: (c, i) {
                     return Divider();
@@ -62,15 +60,14 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     return Padding(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: ListTile(
-                        leading:
-
-                            ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Container(
-                                //  color: Colors.blue,
-                                  height: 40,
-                                  width: 80,
-                                  child: i!= widget.titleList.length -1 ? CachedNetworkImage(
+                        leading: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Container(
+                            //  color: Colors.blue,
+                            height: 40,
+                            width: 80,
+                            child: i != widget.titleList.length - 1
+                                ? CachedNetworkImage(
                                     width: double.infinity,
                                     height: 200,
                                     imageUrl: item.imageAssetUrl,
@@ -78,58 +75,64 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                     placeholder: (context, url) => Center(
                                         child: CircularProgressIndicator()),
                                     // errorWidget: (context, url, error) => Icon(Icons.error),
-                                  ):Container(
-child:Icon(Icons.info)
-                                  ),
-                                ),
-                              ),
-                        title: Padding(
-                          padding: i!=widget.titleList.length-1?EdgeInsets.only(left: 16.0):EdgeInsets.only(left: 0.0),
-                          child:i!=widget.titleList.length-1? Text(
-                            item.categoryName,
-                            style: TextStyle(fontSize: 16),
-                          ):Container(
-                            height: 50,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "About",
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                Text(
-                                  " In - ",
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.blue.shade700,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                Text(
-                                  " News",
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.green.shade700,
-                                      fontWeight: FontWeight.w500),
-                                )
-                              ],
-                            ),
-                          )
+                                  )
+                                : Container(),
+                          ),
                         ),
+                        title: Padding(
+                            padding: i != widget.titleList.length - 1
+                                ? EdgeInsets.only(left: 16.0)
+                                : EdgeInsets.only(left: 0.0),
+                            child: i != widget.titleList.length - 1
+                                ? Text(
+                                    item.categoryName,
+                                    style: TextStyle(fontSize: 16),
+                                  )
+                                : Container(
+                                    height: 50,
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "About",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        Text(
+                                          " In -",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.blue.shade700,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        Text(
+                                          "News",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.green.shade700,
+                                              fontWeight: FontWeight.w500),
+                                        )
+                                      ],
+                                    ),
+                                  )),
                         onTap: () {
                           if (i == 0) {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => Home()));
-                          } else if(i <widget.titleList.length-1) {
+                          } else if (i < widget.titleList.length - 1) {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Home()));
-                          }else{
+                                    builder: (context) => CategoryNewsScreen(
+                                        category:
+                                            widget.titleList[i].categoryName)));
+                          } else {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -140,7 +143,6 @@ child:Icon(Icons.info)
                     );
                   }),
             ),
-
           ],
         ),
       ),
