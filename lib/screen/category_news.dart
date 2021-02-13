@@ -36,7 +36,7 @@ class _HomeState extends State<CategoryNewsScreen> {
   }
 
   getCategoryNews() async {
-    String url = "https://newsapi.org/v2/top-headlines?country=in&category=${widget.category}&apiKey=${keyHelper.apiId}";
+    String url = "https://newsapi.org/v2/top-headlines?country=in&category=${widget.category.toLowerCase()}&apiKey=${keyHelper.apiId}";
     // String url = "http://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=publishedAt&language=en&apiKey=${keyHelper.apiId}";
 
 
@@ -60,7 +60,10 @@ class _HomeState extends State<CategoryNewsScreen> {
       appBar: AppBar(centerTitle: true,
         elevation: 0.0,
         title:
-            Text(widget.category +" News",style: TextStyle(color: Colors.green.shade700),),
+            Padding(
+              padding: const EdgeInsets.only(right:8.0),
+              child: Text(widget.category +" News",style: TextStyle(color: Colors.blue.shade900,fontSize: 20),),
+            ),
 
 
       ),

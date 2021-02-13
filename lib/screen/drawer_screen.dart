@@ -136,7 +136,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => PrivecyPolicy()));
+                                    builder: (context) => PrivacyPolicy()));
                           }
                         },
                       ),

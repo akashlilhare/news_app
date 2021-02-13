@@ -53,13 +53,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   }
 
   List<String> categoriesName = [
-    "business",
-    "entertainment",
-    "general",
-    "health",
-    "science",
-    "sports",
-    "technology"
+    "Business",
+    "Entertainment",
+    "General",
+    "Health",
+    "Science",
+    "Sports",
+    "Technology"
   ];
 
   @override
@@ -82,19 +82,22 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
              SliverAppBar( leading: IconButton(
-               icon: Icon(Icons.drag_handle,color: Colors.blue.shade900,),
+               icon: Icon(Icons.drag_handle_rounded,color: Colors.black,),
                onPressed: () => Scaffold.of(context).openDrawer(),
              ),
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("In-",
-                            style: TextStyle(color: Colors.blue.shade900)),
-                        Text(
-                          "News",
-                          style: TextStyle(color: Colors.green),
-                        ),
-                      ],
+                    title: Padding(
+                      padding: const EdgeInsets.only(right:35.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("In-",
+                              style: TextStyle(color: Colors.blue.shade900)),
+                          Text(
+                            "News",
+                            style: TextStyle(color: Colors.green),
+                          ),
+                        ],
+                      ),
                     ),
                     //collapsedHeight: 55,
                     titleSpacing: 010,
