@@ -9,7 +9,7 @@ final sourceOfNews = "https://newsapi.org/sources";
 final newApiPP = "https://newsapi.org/privacy";
 
 String privacyPolicy =
-    '''Akash Lilhare built the In-News app as a free new reading app. This SERVICE is provided by Akash Lilhare at no cost and is intended for use as is.
+    '''Akash Lilhare built the In-News app as a free new reading app. This SERVICE is provided by Akash Lilhare at no cost and is intended for use as it.
 
 This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service.
 
