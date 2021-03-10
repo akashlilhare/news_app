@@ -1,16 +1,14 @@
-# news_app
+# News App
 
-A new Flutter application.
+A new Flutter application which show live news
 
-## some screenshots
+## Description
 
-<table>
-  <tr>
-    <td><img src="screenShots/ss.gif" width="300" height="600"></td>
-    <td><img src="screenShots/s8/screen_1.png" width="300" height="600"></td>
-    <td><img src="screenShots/s8/screen_3.png" width="300" height="600"></td> 
-  </tr>
- </table>
+A new Flutter application which show live news
+
+## Screenshots
+<p align="middle">
+  <img src ="news_app/screenshot/g1.gif">
  
  
 ## Technology Used
