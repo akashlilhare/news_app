@@ -2,7 +2,7 @@
 
 A new Flutter application.
 
-<h1>some screenshots</h1>
+## some screenshots
 
 <table>
   <tr>
@@ -14,8 +14,8 @@ A new Flutter application.
  
  
 ## Technology Used
-* https://img.shields.io/badge/flutter-98%25-yellowgreen
-* https://img.shields.io/badge/flutter-98%25-yellowgreen
+* [![Python](https://img.shields.io/badge/-Python-000?&logo=python&labelColor=5c5c5c&color=1182c3&logoColor=white&label=%20)]
+* ![flutter](https://img.shields.io/badge/flutter-98%25-yellowgreen)
 
 
 
