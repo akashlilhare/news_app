@@ -8,9 +8,9 @@ A new Flutter application which show live news
 
 ## Screenshots
 <p align="middle">
-  <img src ="https://github.com/akashlilhare/news_app/blob/master/screenshot/g1.gif" width="180" height="180">
-  <img src ="https://github.com/akashlilhare/news_app/blob/master/screenshot/s1.gif" width="180" height="180">
-  <img src ="https://github.com/akashlilhare/news_app/blob/master/screenshot/s2.gif" width="180" height="180">
+  <img src ="https://github.com/akashlilhare/news_app/blob/master/screenshot/g1.gif" width="180" height="360">
+  <img src ="https://github.com/akashlilhare/news_app/blob/master/screenshot/s1.png" width="180" height="360">
+  <img src ="https://github.com/akashlilhare/news_app/blob/master/screenshot/s2.png" width="180" height="360">
 </p>
  
  
