@@ -4,7 +4,15 @@ A new Flutter application which show live news
 
 ## Description
 
-A new Flutter application which show live news
+With the help of this app you can read live news from any categories:
+
+* Business 
+* Entertainment
+* General
+* Health
+* Science
+* Sports
+* Technology
 
 ## Screenshots
 <p align="middle">
