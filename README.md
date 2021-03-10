@@ -21,11 +21,6 @@ With the help of this app you can read live news from any categories:
   <img src ="https://github.com/akashlilhare/news_app/blob/master/screenshot/s2.png" width="180" height="360">
 </p>
  
- 
-## Technology Used
-* [![Python](https://img.shields.io/badge/-Python-000?&logo=python&labelColor=5c5c5c&color=1182c3&logoColor=white&label=%20)]
-* ![flutter](https://img.shields.io/badge/flutter-98%25-yellowgreen)
-
 
 
 ## Getting Started
