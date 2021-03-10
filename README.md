@@ -8,11 +8,14 @@ A new Flutter application.
   <tr>
     <td><img src="screenShots/ss.gif" width="300" height="600"></td>
     <td><img src="screenShots/s8/screen_1.png" width="300" height="600"></td>
-    <td><img src="screenShots/s8/screen_3.png" width="300" height="600"></td>
-    
+    <td><img src="screenShots/s8/screen_3.png" width="300" height="600"></td> 
   </tr>
  </table>
  
+ 
+## Technology Used
+* https://img.shields.io/badge/flutter-98%25-yellowgreen
+* https://img.shields.io/badge/flutter-98%25-yellowgreen
 
 
 
