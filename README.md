@@ -22,5 +22,5 @@ With the help of this app you can read live news from any categories:
   <img src ="https://github.com/akashlilhare/news_app/blob/master/screenshot/screen_1.png" width="180" height="360">
 </p>
  
- ### Contributions are always Welcome!!
+ ### Contributions are always welcome!!
 
