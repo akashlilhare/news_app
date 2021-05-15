@@ -20,25 +20,27 @@ class _DrawerScreenState extends State<DrawerScreen> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+
       child: SafeArea(
         child: Column(
           children: [
             Container(
               //  color: Colors.blue.shade50,
               height: 70,
-              child: Row(
+              child:
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("In-",
                       style: TextStyle(
                           fontSize: 20,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.bold,
                           color: Colors.blue.shade900)),
                   Text(
                     "News",
                     style: TextStyle(
                         fontSize: 20,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.bold,
                         color: Colors.green),
                   ),
                 ],
@@ -86,7 +88,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                             child: i != widget.titleList.length - 1
                                 ? Text(
                                     item.categoryName,
-                                    style: TextStyle(fontSize: 16),
+                                    style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700),
                                   )
                                 : Container(
                                     height: 50,
@@ -96,26 +98,31 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          "About",
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                        Text(
-                                          " In -",
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              color: Colors.blue.shade700,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                        Text(
-                                          "News",
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              color: Colors.green.shade700,
-                                              fontWeight: FontWeight.w500),
-                                        )
+                                        Text("Privacy Policy",
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        // Text(
+                                        //   "About",
+                                        //   style: TextStyle(
+                                        //       fontSize: 18,
+                                        //       fontWeight: FontWeight.w900),
+                                        // ),
+                                        // Text(
+                                        //   " In-",
+                                        //   style: TextStyle(
+                                        //       fontSize: 18,
+                                        //       color: Colors.blue.shade900,
+                                        //       fontWeight: FontWeight.w700),
+                                        // ),
+                                        // Text(
+                                        //   "News",
+                                        //   style: TextStyle(
+                                        //       fontSize: 18,
+                                        //       color: Colors.green.shade700,
+                                        //       fontWeight: FontWeight.w700),
+                                        // )
                                       ],
                                     ),
                                   )),

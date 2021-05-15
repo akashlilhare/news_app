@@ -82,19 +82,26 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
              SliverAppBar( leading: IconButton(
-               icon: Icon(Icons.drag_handle_rounded,color: Colors.black,),
+               icon: Icon(Icons.more_horiz, color: Colors.blue.shade900,),
                onPressed: () => Scaffold.of(context).openDrawer(),
              ),
                     title: Padding(
                       padding: const EdgeInsets.only(right:35.0),
-                      child: Row(
+                      child:
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text("In-",
-                              style: TextStyle(color: Colors.blue.shade900)),
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue.shade900)),
                           Text(
                             "News",
-                            style: TextStyle(color: Colors.green),
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.green),
                           ),
                         ],
                       ),
