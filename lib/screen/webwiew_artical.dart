@@ -26,33 +26,28 @@ class _WebViewContainerState extends State < WebViewContainer > {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(   title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("In-",style: TextStyle(color: Colors.blue.shade900)),
-            Text(
-              "News",
-              style: TextStyle(color: Colors.green),
-            ),
-          ],
-        ),),
+        appBar: AppBar(
+            title:
+           Text("In-News",style: TextStyle(color: Colors.white,fontSize: 20),),
+          backgroundColor: Colors.blue.shade900,
+
+        ),
         body: IndexedStack(
           index: _stackToView,
           children: [
             Column(
-              children: < Widget > [
+              children: <Widget>[
                 Expanded(
                     child: WebView(
-                      key: _key,
-                      javascriptMode: JavascriptMode.unrestricted,
-                      initialUrl: _url,
-                      onPageFinished: _handleLoad,
+                  key: _key,
+                  javascriptMode: JavascriptMode.unrestricted,
+                  initialUrl: _url,
+                  onPageFinished: _handleLoad,
                     )
                 ),
               ],
             ),
             Container(
-              color: Colors.white,
               child: Center(
                 child: CircularProgressIndicator(),
               ),

@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 final playServices = "https://policies.google.com/privacy";
 final email = "121userfeedback@gmail.com";
-final sourceOfNews = "https://newsapi.org/sources";
+final sourceOfNews = "https://newsapi.org/privacy";
 final newApiPP = "https://newsapi.org/privacy";
 
 String privacyPolicy =
@@ -134,21 +134,14 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsets.only(right:30.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("In-",
-                  style: TextStyle(color: Colors.blue.shade900)),
-              Text(
-                "News",
-                style: TextStyle(color: Colors.green),
-              ),
-            ],
-          ),
-        ),
+        title:
+
+         Text(" In-News",style: TextStyle(color: Colors.white,fontSize: 20),),
+
+
         elevation: 0,
+        backgroundColor: Colors.blue.shade900,
+
       ),
       body: SafeArea(
         child: (loading)
