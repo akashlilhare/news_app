@@ -17,10 +17,9 @@ With the help of this app you can read live news from any categories:
 ### Installing required packages
 
 1. Clone this repository
-
-  ```
-  git clone https://github.com/akashlilhare/news_app.git
-  ```
+   ```
+    git clone https://github.com/akashlilhare/news_app.git
+   ```
 
 2. Set current working directory to sudoku
 
