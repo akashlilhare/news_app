@@ -5,7 +5,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 final playServices = "https://policies.google.com/privacy";
 final email = "121userfeedback@gmail.com";
-final sourceOfNews = "https://newsapi.org/privacy";
+final developer ="akashlilhare15@gmail.com";
+final newsProvider = "support@newsapi.org";
+final sourceOfNews = "https://newsapi.org/sources";
 final newApiPP = "https://newsapi.org/privacy";
 
 String privacyPolicy =
@@ -82,7 +84,10 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
     var contentTextStyle = TextStyle(
         fontWeight: FontWeight.w400, fontSize: 16, color: Colors.blueGrey);
     var hyperLinkStyle = TextStyle(
-        fontWeight: FontWeight.w600, fontSize: 18, color: Colors.blue.shade700);
+        fontWeight: FontWeight.w600, fontSize: 18, color: Colors.blue.shade700,decoration: TextDecoration.underline);
+
+
+
     Widget title(String title) {
       return Padding(
         padding: const EdgeInsets.all(8.0),
@@ -152,6 +157,62 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      title("Contact Information"),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          content("News Provider :"),
+                          GestureDetector(
+                            child: Text(
+                              newsProvider,
+                             style: contentTextStyle.copyWith(color:Colors.blue,decoration:TextDecoration.underline),
+                            ),
+                            onTap: () async {
+                              final url = newsProvider;
+                              setState(() {
+                                loading = true;
+                              });
+                              if (await canLaunch(url)) {
+                                await launch(
+                                  url,
+                                  forceSafariVC: false,
+                                );
+                              }
+                              setState(() {
+                                loading = false;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          content("Developer:"),
+                          GestureDetector(
+                            child: Text(
+                              developer,
+                              style: contentTextStyle.copyWith(color:Colors.blue,decoration:TextDecoration.underline),
+                            ),
+                            onTap: () async {
+                              final url = developer;
+                              setState(() {
+                                loading = true;
+                              });
+                              if (await canLaunch(url)) {
+                                await launch(
+                                  url,
+                                  forceSafariVC: false,
+                                );
+                              }
+                              setState(() {
+                                loading = false;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+
                       title("Privacy Policy"),
                       content(privacyPolicy),
                       title("Source of News"),
@@ -190,9 +251,10 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                                 style: contentTextStyle,
                                 text: informationCollection,
                               ),
+
                               TextSpan(
                                   style: hyperLinkStyle,
-                                  text: "Google Play Services",
+                                  text: "\n \nGoogle Play Services",
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () async {
                                       final url = playServices;

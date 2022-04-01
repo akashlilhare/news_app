@@ -2,10 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+// import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewContainer extends StatefulWidget {
   final url;
-  WebViewContainer({@required this.url});
+  WebViewContainer({required this.url});
   @override
   createState() => _WebViewContainerState(this.url);
 }
@@ -28,16 +29,17 @@ class _WebViewContainerState extends State < WebViewContainer > {
     return Scaffold(
         appBar: AppBar(
             title:
-           Text("In-News",style: TextStyle(color: Colors.white,fontSize: 20),),
+           Text("News App",style: TextStyle(color: Colors.white,fontSize: 20),),
           backgroundColor: Colors.blue.shade900,
 
         ),
         body: IndexedStack(
-          index: _stackToView,
+          index: _stackToView as int?,
           children: [
             Column(
               children: <Widget>[
                 Expanded(
+
                     child: WebView(
                   key: _key,
                   javascriptMode: JavascriptMode.unrestricted,

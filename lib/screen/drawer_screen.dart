@@ -10,7 +10,7 @@ import 'home_screen.dart';
 class DrawerScreen extends StatefulWidget {
   final List<CategoryModel> titleList;
 
-  DrawerScreen({@required this.titleList});
+  DrawerScreen({required this.titleList});
 
   @override
   _DrawerScreenState createState() => _DrawerScreenState();
@@ -72,7 +72,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                 ? CachedNetworkImage(
                                     width: double.infinity,
                                     height: 200,
-                                    imageUrl: item.imageAssetUrl,
+                                    imageUrl: item.imageAssetUrl!,
                                     fit: BoxFit.cover,
                                     placeholder: (context, url) => Center(
                                         child: CircularProgressIndicator()),
@@ -87,7 +87,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                 : EdgeInsets.only(left: 0.0),
                             child: i != widget.titleList.length - 1
                                 ? Text(
-                                    item.categoryName,
+                                    item.categoryName!,
                                     style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700),
                                   )
                                 : Container(

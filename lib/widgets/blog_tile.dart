@@ -1,19 +1,23 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dart_sentiment/dart_sentiment.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/screen/news_info_screen.dart';
 import 'package:news_app/screen/webwiew_artical.dart';
 import 'package:share/share.dart';
 
 class BlogTile extends StatefulWidget {
   final String imageUrl, title, desc, publishedAt, author, articleUrl, source;
 
+
   BlogTile(
-      {@required this.imageUrl,
-      @required this.title,
-      @required this.desc,
-      @required this.author,
-      @required this.publishedAt,
-      @required this.articleUrl,
-      @required this.source});
+      {required this.imageUrl,
+      required this.title,
+      required this.desc,
+      required this.author,
+      required this.publishedAt,
+      required this.articleUrl,
+
+      required this.source});
 
   @override
   _BlogTileState createState() => _BlogTileState();
@@ -43,7 +47,7 @@ class _BlogTileState extends State<BlogTile> {
             const EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
         child: Card(
           shape: RoundedRectangleBorder(
-            side: BorderSide(color: Colors.black, width: 1),
+            side: BorderSide(color: Colors.white70, width: 0),
             borderRadius: BorderRadius.circular(20.0),
           ),
           elevation: 5,
@@ -60,7 +64,7 @@ class _BlogTileState extends State<BlogTile> {
                     imageUrl: widget.imageUrl,
                     fit: BoxFit.cover,
                     placeholder: (context, url) =>
-                        Center(child: CircularProgressIndicator()),
+                        Center(child: CircularProgressIndicator(color: Colors.white70,)),
                     // errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                   Container(
@@ -85,13 +89,13 @@ class _BlogTileState extends State<BlogTile> {
                   ),
                   Container(
                     height: 1,
-                    color: Colors.black,
+                    color: Colors.white24,
                   ),
                   Container(
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 4),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
                             width: widget.source == "null" ? 0 : 80,
@@ -105,16 +109,7 @@ class _BlogTileState extends State<BlogTile> {
                             time,
                             style: TextStyle(color: Colors.white),
                           ),
-                          IconButton(
-                              tooltip: "Like",
-                              icon: Icon(Icons.favorite,
-                                  color: liked ? Colors.red : Colors.white),
-                              onPressed: () {
-                                setState(() {
-                                  liked = !liked;
-                                  print(liked);
-                                });
-                              }),
+
                           IconButton(
                             icon: Icon(Icons.share),
                             onPressed: () {
@@ -123,7 +118,8 @@ class _BlogTileState extends State<BlogTile> {
                             color: Colors.white,
                             tooltip: "Share",
                             splashColor: Colors.blue,
-                          )
+                          ),
+
                         ],
                       ),
                     ),

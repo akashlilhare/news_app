@@ -10,8 +10,8 @@ import 'package:news_app/widgets/blog_tile.dart';
 import 'package:news_app/widgets/landScape_blog_tile.dart';
 
 class CategoryNewsScreen extends StatefulWidget {
-  final String category;
-  CategoryNewsScreen({@required this.category});
+  final String? category;
+  CategoryNewsScreen({required this.category});
   @override
   _HomeState createState() => _HomeState();
 }
@@ -36,7 +36,7 @@ class _HomeState extends State<CategoryNewsScreen> {
   }
 
   getCategoryNews() async {
-    String url = "https://newsapi.org/v2/top-headlines?country=in&category=${widget.category.toLowerCase()}&apiKey=${keyHelper.apiId}";
+    String url = "https://newsapi.org/v2/top-headlines?country=in&category=${widget.category!.toLowerCase()}&apiKey=${keyHelper.apiId}";
 
 
     print(url);
@@ -61,7 +61,7 @@ class _HomeState extends State<CategoryNewsScreen> {
         title:
             Padding(
               padding: const EdgeInsets.only(right:8.0),
-              child: Text(widget.category +" News",style: TextStyle(color: Colors.white,fontSize: 20),),
+              child: Text(widget.category! +" News",style: TextStyle(color: Colors.white,fontSize: 20),),
             ),
 
         backgroundColor: Colors.blue.shade900,

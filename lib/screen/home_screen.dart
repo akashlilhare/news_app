@@ -8,6 +8,7 @@ import 'package:news_app/models/categori_model.dart';
 import 'package:news_app/widgets/blog_tile.dart';
 import 'package:news_app/widgets/category_title.dart';
 import 'package:news_app/widgets/landScape_blog_tile.dart';
+import 'package:news_app/widgets/news_list.dart';
 
 import 'category_news.dart';
 import 'drawer_screen.dart';
@@ -21,20 +22,22 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   List<CategoryModel> categories = [];
   List<CategoryModel> drawerCategories = [];
   List<Article> articles = [];
+  List<Article> positiveArticles = [];
+  List<Article> negativeArticles = [];
   News newsClass = News();
   KeyHelper keyHelper = KeyHelper();
   bool _loading = true;
   bool liked = false;
 
-  ScrollController _scrollController;
-  TabController tabContoller;
+  ScrollController? _scrollController;
+  TabController? tabContoller;
 
   @override
   void initState() {
     _scrollController = new ScrollController();
     tabContoller = new TabController(
       vsync: this,
-      length: 1,
+      length: 3,
     );
     super.initState();
     categories = getCategories();
@@ -43,10 +46,21 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   }
 
   getNews() async {
+    setState(() {
+      _loading = true;
+    });
+    newsClass.news = [];
+    newsClass.negativeNews = [];
+    newsClass.positiveNews = [];
+    articles = [];
+    positiveArticles = [];
+    negativeArticles = [];
     String url =
         "https://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=publishedAt&language=en&apiKey=${keyHelper.apiId}";
     await newsClass.getNews(url);
     articles = newsClass.news;
+    positiveArticles = newsClass.positiveNews;
+    negativeArticles = newsClass.negativeNews;
     setState(() {
       _loading = false;
     });
@@ -70,129 +84,46 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     // double width = size.width;
     return Scaffold(
 
-      drawer: DrawerScreen(
-        titleList:drawerCategories,
-      ),
       backgroundColor: Colors.white,
-      body: _loading
-          ? Center(child: CircularProgressIndicator())
-          :SafeArea(
-          child: NestedScrollView(
-        controller: _scrollController,
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-             SliverAppBar( leading: IconButton(
-               icon: Icon(Icons.more_horiz, color: Colors.blue.shade900,),
-               onPressed: () => Scaffold.of(context).openDrawer(),
-             ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(right:35.0),
-                      child:
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("In-",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.blue.shade900)),
-                          Text(
-                            "News",
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.green),
-                          ),
-                        ],
-                      ),
-                    ),
-                    //collapsedHeight: 55,
-                    titleSpacing: 010,
-                    backgroundColor: Colors.white,
-                    automaticallyImplyLeading: false,
-                    expandedHeight: isPortrait ? height * .18 : height * .3,
-                    pinned: true,
-                    floating: false,
-                    forceElevated: innerBoxIsScrolled,
-                    flexibleSpace: FlexibleSpaceBar(
-                      background: Stack(children: <Widget>[
-                        Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 60, right: 10, left: 10),
-                              child: Container(
-                                  height:
-                                      isPortrait ? height * .08 : height * .12,
-                                  child: ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    shrinkWrap: true,
-                                    itemCount: categories.length,
-                                    itemBuilder: (context, index) {
-                                      return GestureDetector(
-                                        onTap: () {
-                                          print(categoriesName[index]);
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      CategoryNewsScreen(
-                                                        category:
-                                                            categoriesName[
-                                                                index],
-                                                      )));
-                                        },
-                                        child: CategoryTile(
-                                          categoryName:
-                                              categories[index].categoryName,
-                                          imageUrl:
-                                              categories[index].imageAssetUrl,
-                                        ),
-                                      );
-                                    },
-                                  )),
-                            ),
-                          ],
-                        ),
-                      ]),
-                    ),
-                  ),
-          ];
-        },
-        body: TabBarView(
-          controller: tabContoller,
-          children: [
-            isPortrait
-                ? ListView.builder(
-                    itemCount: articles.length,
-                    itemBuilder: (context, index) {
-                      return BlogTile(
-                          imageUrl: articles[index].urlToImage,
-                          title: articles[index].title,
-                          desc: articles[index].description,
-                          publishedAt: articles[index].publshedAt,
-                          author: articles[index].author,
-                          articleUrl: articles[index].articleUrl,
-                          source: articles[index].source);
-                    })
-                : GridView.builder(
-                    itemCount: articles.length,
-                    gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 1, childAspectRatio: 3),
-                    itemBuilder: (BuildContext context, int index) {
-                      return LandScapeBlogTile(
-                          imageUrl: articles[index].urlToImage,
-                          title: articles[index].title,
-                          desc: articles[index].description,
-                          publishedAt: articles[index].publshedAt,
-                          author: articles[index].author,
-                          articleUrl: articles[index].articleUrl,
-                          source: articles[index].source);
-                    },
-                  ),
-          ],
+      body: DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          drawer: DrawerScreen(
+            titleList:drawerCategories,
+          ),
+          appBar: AppBar(
+            title: Text("News App"),
+            bottom: TabBar(        physics: NeverScrollableScrollPhysics(),
+
+              tabs: [
+                Tab( text: "All"),
+                Tab( text: "Positive"),
+                Tab(text: "Negative")
+              ],
+              controller: tabContoller,
+              onTap: (_){
+
+               setState(() {
+                 _loading = true;
+                });
+                Future.delayed(Duration(seconds: 2)).then((value) {
+                  setState(() {
+                    _loading = false;
+                  });
+                });
+              },
+            ),
+          ),
+          body: TabBarView(
+            children: [
+             NewsList(articles: articles, isLoading: _loading,onReload: getNews),
+             NewsList(articles: positiveArticles, isLoading: _loading,onReload: getNews),
+             NewsList(articles: negativeArticles, isLoading: _loading,onReload: getNews),
+            ],
+          ),
         ),
-      )),
+      ),
+
     );
   }
 }

@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.white,
        //   primarySwatch: Colors.blue,
           textTheme: textTheme,
+          appBarTheme: AppBarTheme(color: Colors.blue.shade900),
           inputDecorationTheme: InputDecorationTheme(
             filled: true,
             fillColor: Colors.grey.shade100,

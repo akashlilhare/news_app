@@ -1,20 +1,20 @@
 class Article {
-  String title;
-  String author;
-  String description;
-  String urlToImage;
-  String publshedAt;
-  String content;
-  String articleUrl;
-  String source;
+ final String title;
+ final String author;
+ final String description;
+ final String urlToImage;
+ final String publshedAt;
+ final String content;
+ final String articleUrl;
+ final String source;
 
   Article(
-      {this.source,
-      this.title,
-      this.description,
-      this.author,
-      this.content,
-      this.publshedAt,
-      this.urlToImage,
-      this.articleUrl});
+      {required this.source,
+      required this.title,
+      required this.description,
+      required this.author,
+      required this.content,
+      required this.publshedAt,
+      required this.urlToImage,
+      required this.articleUrl});
 }

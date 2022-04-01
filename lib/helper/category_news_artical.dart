@@ -15,10 +15,9 @@ class CategoryNews {
   Future<void> getNews(String category) async{
     print(category);
 
-
     String url = "http://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=publishedAt&language=en&apiKey=${keyHelper.apiId}";
 
-    var response = await http.get(url);
+    var response = await http.get(Uri.parse(url));
 
     var jsonData = jsonDecode(response.body);
 
@@ -28,13 +27,14 @@ class CategoryNews {
 
         if(element['urlToImage'] != null && element['description'] != null){
           Article article = Article(
-            title: element['title'],
-            author: element['author'],
-            description: element['description'],
-            urlToImage: element['urlToImage'],
-            publshedAt: element['publishedAt'],
-            content: element["content"],
-            articleUrl: element["url"],
+            title: element['title'] ??"",
+            author: element['author']??"",
+            description: element['description'] ??"",
+            urlToImage: element['urlToImage']??"",
+            publshedAt: element['publishedAt']??"",
+            content: element["content"]??"",
+            articleUrl: element["url"]??"",
+            source: element["source"]["name"] ?? "",
           );
           categoryNews.add(article);
         }
