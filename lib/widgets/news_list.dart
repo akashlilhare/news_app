@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:news_app/models/artical_model.dart';
 import 'package:news_app/widgets/shimer_loader.dart';
@@ -13,6 +15,8 @@ class NewsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    log(articles.length.toString() + "length");
     var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
 
     return isLoading ? ShimmerLoader():

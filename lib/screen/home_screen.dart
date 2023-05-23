@@ -5,13 +5,7 @@ import 'package:news_app/helper/key_helper.dart';
 import 'package:news_app/helper/news_artical.dart';
 import 'package:news_app/models/artical_model.dart';
 import 'package:news_app/models/categori_model.dart';
-import 'package:news_app/widgets/blog_tile.dart';
-import 'package:news_app/widgets/category_title.dart';
-import 'package:news_app/widgets/landScape_blog_tile.dart';
 import 'package:news_app/widgets/news_list.dart';
-
-import 'category_news.dart';
-import 'drawer_screen.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -61,6 +55,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     articles = newsClass.news;
     positiveArticles = newsClass.positiveNews;
     negativeArticles = newsClass.negativeNews;
+
     setState(() {
       _loading = false;
     });
@@ -82,25 +77,59 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     var size = MediaQuery.of(context).size;
     double height = size.height;
     // double width = size.width;
-    return Scaffold(
 
+    buildTab({required String title, required String count}) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(title),
+          SizedBox(
+            width: 6,
+          ),
+          Container(
+            padding: EdgeInsets.all(4),
+            decoration:
+                BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+            child: Text(
+              count.length == 1 ? " $count " : count,
+              style: TextStyle(color: Colors.black.withOpacity(.8),fontSize: 12),
+            ),
+          )
+        ],
+      );
+    }
+
+    return Scaffold(
       backgroundColor: Colors.white,
       body: DefaultTabController(
         length: 3,
         child: Scaffold(
-          drawer: DrawerScreen(
-            titleList:drawerCategories,
-          ),
+          // drawer: DrawerScreen(
+          //   titleList:drawerCategories,
+          // ),
           appBar: AppBar(
+
             title: Text("News App"),
-            bottom: TabBar(        physics: NeverScrollableScrollPhysics(),
+            bottom: TabBar(
+              physics: NeverScrollableScrollPhysics(),
 
               tabs: [
-                Tab( text: "All"),
-                Tab( text: "Positive"),
-                Tab(text: "Negative")
+                Tab(
+                  child: buildTab(
+                      title: "All", count: articles.length.toString()),
+                ),
+                Tab(
+                  child: buildTab(
+                      title: "Positive",
+                      count: positiveArticles.length.toString()),
+                ),
+                Tab(
+                  child: buildTab(
+                      title: "Negative",
+                      count: negativeArticles.length.toString()),
+                ),
               ],
-              controller: tabContoller,
+              //     controller: tabContoller,
               onTap: (_){
 
                setState(() {
