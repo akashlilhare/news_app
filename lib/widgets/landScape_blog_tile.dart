@@ -4,7 +4,7 @@ import 'package:news_app/screen/webwiew_artical.dart';
 import 'package:share/share.dart';
 
 class LandScapeBlogTile extends StatefulWidget {
-  final String? imageUrl, title, desc, publishedAt,author,articleUrl,source;
+  final String imageUrl, title, desc, publishedAt, author, articleUrl, source;
 
   LandScapeBlogTile({
     required this.imageUrl,
@@ -28,8 +28,15 @@ class _LandScapeBlogTileState extends State<LandScapeBlogTile> {
     var size = MediaQuery.of(context).size;
     double height = size.height;
     double width = size.width;
-    var duration =  DateTime.now().difference(DateTime.parse(widget.publishedAt!));
-    String time =(duration.inHours >=1) ? duration.inHours.toString()+" hour ago":duration.inMinutes.toString()+" minuit ago";
+    final publishedAt = DateTime.tryParse(widget.publishedAt);
+    final duration = publishedAt == null
+        ? null
+        : DateTime.now().difference(publishedAt);
+    String time = duration == null
+        ? "Just now"
+        : (duration.inHours >= 1)
+            ? duration.inHours.toString() + " hr ago"
+            : duration.inMinutes.toString() + " min ago";
     return GestureDetector(
       onTap: (){
         Navigator.push(context, MaterialPageRoute(builder: (context)=>WebViewContainer(url:  widget.articleUrl)));
@@ -62,7 +69,7 @@ class _LandScapeBlogTileState extends State<LandScapeBlogTile> {
                         child: CachedNetworkImage(
                           width: width *.4,
                           height: height*.4,
-                          imageUrl: widget.imageUrl!,
+                          imageUrl: widget.imageUrl,
                           fit: BoxFit.cover,
                           placeholder: (context, url) => Center(child: CircularProgressIndicator()),
                           // errorWidget: (context, url, error) => Icon(Icons.error),
@@ -79,7 +86,7 @@ class _LandScapeBlogTileState extends State<LandScapeBlogTile> {
                                 child: Padding(
                                   padding: const EdgeInsets.only(right: 8,left: 8,bottom: 8),
                                   child: Text(
-                                    widget.title!,maxLines: 2,
+                                    widget.title,maxLines: 2,
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w700,
@@ -93,7 +100,7 @@ class _LandScapeBlogTileState extends State<LandScapeBlogTile> {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left:15.0,top: 5,right: 10),
                                     child: Text(
-                                      widget.desc!,
+                                      widget.desc,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w400, color: Colors.white),
                                      maxLines: 4, ),
@@ -118,7 +125,7 @@ class _LandScapeBlogTileState extends State<LandScapeBlogTile> {
                           Container(
                             width:widget.source =="null" ?0:150,
                             child: Text(
-                              widget.source =="null"?"":widget.source!,
+                              widget.source =="null"?"":widget.source,
                               style: TextStyle(color: Colors.white,
                               ),
                               overflow: TextOverflow.ellipsis,),
@@ -135,11 +142,10 @@ class _LandScapeBlogTileState extends State<LandScapeBlogTile> {
                               onPressed: () {
                                 setState(() {
                                   liked = !liked;
-                                  print(liked);
                                 });
                               }),
                           IconButton(icon: Icon(Icons.share),onPressed: (){
-                            Share.share(widget.articleUrl!);
+                            Share.share(widget.articleUrl);
                           },color: Colors.white,tooltip: "Share",splashColor: Colors.blue,)
                         ],
                       ),

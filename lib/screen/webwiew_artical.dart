@@ -5,20 +5,22 @@ import 'package:webview_flutter/webview_flutter.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewContainer extends StatefulWidget {
-  final url;
+  final String url;
   WebViewContainer({required this.url});
   @override
-  createState() => _WebViewContainerState(this.url);
+  createState() => _WebViewContainerState();
 }
 
 
 class _WebViewContainerState extends State < WebViewContainer > {
-  var _url;
   final _key = UniqueKey();
-  _WebViewContainerState( this._url);
-  num _stackToView = 1;
+  int _stackToView = 1;
 
   void _handleLoad(String value) {
+    if (!mounted) {
+      return;
+    }
+
     setState(() {
       _stackToView = 0;
     });
@@ -34,7 +36,7 @@ class _WebViewContainerState extends State < WebViewContainer > {
 
         ),
         body: IndexedStack(
-          index: _stackToView as int?,
+          index: _stackToView,
           children: [
             Column(
               children: <Widget>[
@@ -43,7 +45,7 @@ class _WebViewContainerState extends State < WebViewContainer > {
                     child: WebView(
                   key: _key,
                   javascriptMode: JavascriptMode.unrestricted,
-                  initialUrl: _url,
+                  initialUrl: widget.url,
                   onPageFinished: _handleLoad,
                     )
                 ),

@@ -36,16 +36,21 @@ class _HomeState extends State<CategoryNewsScreen> {
   }
 
   getCategoryNews() async {
-    String url = "https://newsapi.org/v2/top-headlines?country=in&category=${widget.category!.toLowerCase()}&apiKey=${keyHelper.apiId}";
-
-
-    print(url);
-    // await newsClass.getNews();
-    await newsClass.getNews(url);
-    print("in async block");
-
-    articles = newsClass.news;
     setState(() {
+      _loading = true;
+    });
+
+    String url =
+        "https://newsapi.org/v2/top-headlines?country=in&category=${widget.category!.toLowerCase()}&apiKey=${keyHelper.apiId}";
+
+    await newsClass.getNews(url);
+
+    if (!mounted) {
+      return;
+    }
+
+    setState(() {
+      articles = newsClass.news;
       _loading = false;
     });
   }

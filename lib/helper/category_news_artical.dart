@@ -1,6 +1,5 @@
-
-
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:news_app/models/artical_model.dart';
@@ -8,38 +7,73 @@ import 'package:news_app/models/artical_model.dart';
 import 'key_helper.dart';
 
 class CategoryNews {
-
   KeyHelper keyHelper = KeyHelper();
-  List<Article> categoryNews  = [];
+  List<Article> categoryNews = [];
 
-  Future<void> getNews(String category) async{
-    print(category);
+  Future<bool> getNews(String category) async {
+    categoryNews.clear();
 
-    String url = "http://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=publishedAt&language=en&apiKey=${keyHelper.apiId}";
+    if (!keyHelper.hasApiKey) {
+      log('NEWS_API_KEY was not provided. Pass --dart-define=NEWS_API_KEY=your_key when running the app.');
+      return false;
+    }
 
-    var response = await http.get(Uri.parse(url));
+    final url = Uri.https('newsapi.org', '/v2/top-headlines', {
+      'country': 'in',
+      'category': category.toLowerCase(),
+      'apiKey': keyHelper.apiId,
+    });
 
-    var jsonData = jsonDecode(response.body);
+    try {
+      final response = await http.get(url);
+      if (response.statusCode < 200 || response.statusCode >= 300) {
+        log('News API request failed with status ${response.statusCode}: ${response.body}');
+        return false;
+      }
 
-    print(response.statusCode);
-    if(jsonData['status'] == "ok"){
-      jsonData["articles"].forEach((element){
+      final jsonData = jsonDecode(response.body);
+      if (jsonData is! Map<String, dynamic> || jsonData['status'] != 'ok') {
+        log('News API returned an error response: $jsonData');
+        return false;
+      }
 
-        if(element['urlToImage'] != null && element['description'] != null){
-          Article article = Article(
-            title: element['title'] ??"",
-            author: element['author']??"",
-            description: element['description'] ??"",
-            urlToImage: element['urlToImage']??"",
-            publshedAt: element['publishedAt']??"",
-            content: element["content"]??"",
-            articleUrl: element["url"]??"",
-            source: element["source"]["name"] ?? "",
+      final articles = jsonData['articles'];
+      if (articles is! List) {
+        log('News API response did not contain an articles list.');
+        return false;
+      }
+
+      for (final element in articles) {
+        if (element is! Map<String, dynamic>) {
+          continue;
+        }
+
+        final imageUrl = element['urlToImage'];
+        final description = element['description'];
+        final source = element['source'];
+        if (imageUrl is String &&
+            imageUrl.isNotEmpty &&
+            description is String &&
+            description.isNotEmpty) {
+          final article = Article(
+            title: element['title']?.toString() ?? '',
+            author: element['author']?.toString() ?? '',
+            description: description,
+            urlToImage: imageUrl,
+            publshedAt: element['publishedAt']?.toString() ?? '',
+            content: element['content']?.toString() ?? '',
+            articleUrl: element['url']?.toString() ?? '',
+            source: source is Map<String, dynamic>
+                ? source['name']?.toString() ?? ''
+                : '',
           );
           categoryNews.add(article);
         }
-
-      });
+      }
+      return true;
+    } catch (error, stackTrace) {
+      log('Failed to load category news.', error: error, stackTrace: stackTrace);
+      return false;
     }
   }
 }

@@ -39,6 +39,14 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     getNews();
   }
 
+
+  @override
+  void dispose() {
+    _scrollController?.dispose();
+    tabContoller?.dispose();
+    super.dispose();
+  }
+
   getNews() async {
     setState(() {
       _loading = true;
@@ -52,11 +60,15 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     String url =
         "https://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=publishedAt&language=en&apiKey=${keyHelper.apiId}";
     await newsClass.getNews(url);
-    articles = newsClass.news;
-    positiveArticles = newsClass.positiveNews;
-    negativeArticles = newsClass.negativeNews;
+
+    if (!mounted) {
+      return;
+    }
 
     setState(() {
+      articles = newsClass.news;
+      positiveArticles = newsClass.positiveNews;
+      negativeArticles = newsClass.negativeNews;
       _loading = false;
     });
   }

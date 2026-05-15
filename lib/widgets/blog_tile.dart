@@ -1,7 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dart_sentiment/dart_sentiment.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/screen/news_info_screen.dart';
 import 'package:news_app/screen/webwiew_artical.dart';
 import 'package:share/share.dart';
 
@@ -28,11 +26,15 @@ class _BlogTileState extends State<BlogTile> {
 
   @override
   Widget build(BuildContext context) {
-    var duration =
-        DateTime.now().difference(DateTime.parse(widget.publishedAt));
-    String time = (duration.inHours >= 1)
-        ? duration.inHours.toString() + " hour ago"
-        : duration.inMinutes.toString() + " minuit ago";
+    final publishedAt = DateTime.tryParse(widget.publishedAt);
+    final duration = publishedAt == null
+        ? null
+        : DateTime.now().difference(publishedAt);
+    String time = duration == null
+        ? "Just now"
+        : (duration.inHours >= 1)
+            ? duration.inHours.toString() + " hr ago"
+            : duration.inMinutes.toString() + " min ago";
     return GestureDetector(
       onTap: () {
         Navigator.push(
