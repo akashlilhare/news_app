@@ -21,13 +21,18 @@ With the help of this app you can read live news from any categories:
     git clone https://github.com/akashlilhare/news_app.git
    ```
 
-2. Set current working directory to sudoku
+2. Set current working directory to `news_app`
 
 3. Run these commands:
    ```
    flutter pub get
    flutter pub upgrade
    flutter pub outdated
+   ```
+
+4. Run the app with a NewsAPI key (the app reads it from `--dart-define` so secrets do not need to be committed):
+   ```
+   flutter run --dart-define=NEWS_API_KEY=your_newsapi_key
    ```
 
 #### This will install all the required packages
